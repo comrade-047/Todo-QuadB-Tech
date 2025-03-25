@@ -11,14 +11,13 @@ function Login() {
       {!isAuthenticated ? (
         <Button
           onClick={() => dispatch(login())}
-          className="bg-green-500 hover:bg-green-600"
-        >
+        > 
           Login
         </Button>
       ) : (
         <Button
           onClick={() => dispatch(logout())}
-          className="bg-red-500 hover:bg-red-600"
+          className="bg-gray-200 hover:bg-gray-400 backdrop-blur-lg"
         >
           Logout
         </Button>

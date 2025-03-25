@@ -25,15 +25,15 @@ function TodoList() {
   }, [tasks]);
 
   return (
-    <div className="w-full max-w-md mx-auto mt-6">
+    <div className="w-full max-w-md mx-auto mt-6 ">
       <ul className="space-y-3">
         {tasks.map((task) => (
           <li
             key={task.id}
-            className="flex justify-between items-center p-3 bg-gray-100 rounded-lg shadow-md"
+            className="flex justify-between items-center p-3 bg-gray-100 rounded-lg shadow-md bg-transparent"
           >
             <div>
-              <span className="font-medium text-gray-800">{task.name}</span>
+              <span className="font-medium text-white">{task.name}</span>
               <span
                 className={`ml-2 px-2 py-1 rounded-md 
                         ${
@@ -49,13 +49,16 @@ function TodoList() {
 
               {/* Display Weather Info Inside Task */}
               {task.isOutdoor && weatherData[task.id] && (
-                <span className="ml-2 text-blue-500 text-sm">
+                <span className="ml-2 text-black text-sm">
                   🌤 {weatherData[task.id].temperature}°C, {weatherData[task.id].condition}
                 </span>
               )}
             </div>
 
-            <Button onClick={() => dispatch(deleteTask(task.id))} className="bg-red-500 hover:bg-red-600">
+            <Button
+              onClick={() => dispatch(deleteTask(task.id))}
+              className="hover:bg-red-500 hover:border-red-500 hover:text-white"
+            >
               Delete
             </Button>
           </li>

@@ -2,8 +2,10 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTask } from "../../redux/taskSlice";
 import Button from "../Button/Button"; // Import Button Component
+import InputFeild from "../InputField/InputField";
 
-function Input() {
+
+function TaskInput() {
   const [task, setTask] = useState("");
   const [priority, setPriority] = useState("Select");
   const [isOutdoor,setIsOutdoor]  = useState(false);
@@ -37,20 +39,18 @@ function Input() {
   }
 
   return (
-    <div className="flex flex-col gap-3 p-4 bg-white shadow-md rounded-md w-full max-w-md mx-auto">
-      <input
-        type="text"
+    <div className="flex flex-col gap-3 p-4 bg-white shadow-md rounded-md w-full max-w-md mx-auto bg-transparent" >
+      <InputFeild
         value={task}
         onChange={(e) => setTask(e.target.value)}
-        placeholder="Enter your task..."
-        className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        placeholder="Enter your task ..."
       />
 
       {/**priority selection */}
       <select
         value={priority}
         onChange={(e) => setPriority(e.target.value)}
-        className="border border-gray-300 rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400"
+        className="border border-gray-300 rounded-md px-3 py-2 text-white bg-white focus:outline-none  bg-transparent"
       >
         <option value="Select" disabled>
           Select priority
@@ -62,7 +62,7 @@ function Input() {
 
       {/* Outdoor Task Checkbox */}
       <div className="mt-2">
-        <label className="inline-flex items-center">
+        <label className="inline-flex items-center text-white">
           <input
             type="checkbox"
             checked={isOutdoor}
@@ -75,20 +75,23 @@ function Input() {
 
       {/* City Input (Only for Outdoor Tasks) */}
       {isOutdoor && (
-        <input
-          type="text"
+        <InputFeild
           value={city}
           onChange={(e) => setCity(e.target.value)}
           placeholder="Enter City"
-          className="w-full p-2 mt-2 border rounded-md"
         />
       )}
 
       {/* Using Button Component */}
-      <Button onClick={handleAddTask}>Add Task</Button>{" "}
+      <Button
+        onClick={handleAddTask}
+        className="hover:bg-green-400 hover:border-green-400"
+      >
+        Add Task
+      </Button>
       
     </div>
   );
 }
 
-export default Input;
+export default TaskInput;

@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_KEY = "5b03a266c7377e99f5ddc2129697c321";
+const API_KEY = import.meta.env.VITE_WEATHER_API_KEY; 
 const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
 
 export async function getWeather(city){
@@ -11,7 +11,7 @@ export async function getWeather(city){
                 units:'metric'
             }
         });
-        // console.log(response.data);
+        console.log(response.data);
         return {
             
             temperature:response.data.main.temp,
