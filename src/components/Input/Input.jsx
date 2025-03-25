@@ -1,8 +1,19 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addTask } from "../../redux/taskSlice";
 
 function Input(){
 
     const [task,setTask] = useState('');
+    
+    const dispatch = useDispatch();
+
+    function handleAddTask(){
+        if(task.trim()){
+            dispatch(addTask({id:Date.now(),name:task,priority:'Medium'}));
+            setTask('');
+        }
+    }
 
     return (
         <div>
@@ -12,7 +23,7 @@ function Input(){
                 onChange={(e)=>setTask(e.target.value)}
                 placeholder="Add a task"
             />
-            <button>Add</button>
+            <button onClick={handleAddTask}>Add</button>
         </div>
     );
 }
