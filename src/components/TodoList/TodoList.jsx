@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { deleteTask } from "../../redux/taskSlice";
-
+import Button from "../Button/Button";
 function TodoList() {
   const tasks = useSelector((state) => state.tasks.tasks);
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ function TodoList() {
             className="flex justify-between items-center p-3 bg-gray-100 rounded-lg shadow-md"
           >
             <span className="font-medium text-gray-800">
-              {task.name} 
+              {task.name}
               <span
                 className={`ml-2 px-2 py-1 rounded-md 
                         ${
@@ -28,12 +28,12 @@ function TodoList() {
                 {task.priority}
               </span>
             </span>
-            <button
+            <Button
               onClick={() => dispatch(deleteTask(task.id))}
-              className="text-white bg-red-500 px-2 py-1 rounded-md hover:bg-red-600"
+              className="bg-red-500 hover:bg-red-600"
             >
               Delete
-            </button>
+            </Button>
           </li>
         ))}
       </ul>
