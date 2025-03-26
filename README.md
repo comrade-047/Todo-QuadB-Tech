@@ -1,12 +1,70 @@
-# React + Vite
+# To-Do List App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-Redux-based To-Do List application with authentication, error handling, and weather API integration.
 
-Currently, two official plugins are available:
+## Features
+- **User Authentication**: Login system with Redux state management.
+- **Task Management**: Add, delete, and sort tasks based on priority.
+- **Weather Integration**: Fetch weather data for outdoor tasks.
+- **Error Handling**: Redirects to an error page when API requests fail.
+- **Persistent Storage**: Saves tasks using `localStorage`.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used
+- React.js
+- Redux Toolkit
+- React Router
+- Tailwind CSS
+- Lucide React (for icons)
+- Weather API
+- LocalStorage
 
-## Expanding the ESLint configuration
+## Folder Structure
+```
+/src
+│── apis/                  # API request functions
+│── assets/                # Static assets (images, icons, etc.)
+│── components/            # Reusable UI components
+│   ├── InputField/        # Task input field component
+│   ├── Button/            # Custom button component
+│   ├── ErrorPage/         # Error handling UI
+│   ├── Login/             # Authentication UI
+│   ├── TaskInput/         # Task input container
+│   ├── TodoList/          # To-Do list components
+│── redux/                 # Redux store and slices
+│   ├── store.js           # Redux store configuration
+│   ├── authSlice.js       # Authentication state management
+│   ├── taskSlice.js       # Task state management
+│── App.jsx                # Main application component
+|-- App.css
+│── main.jsx               # Entry point of the app
+│── index.css              # Global styles
+```
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Installation & Setup
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/your-username/todo-app.git
+   cd todo-app
+   ```
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+3. Start the development server:
+   ```sh
+   npm run dev
+   ```
+
+## Usage
+- Login to access the task manager.
+- Add tasks and specify if they are outdoor.
+- If an outdoor task is added, weather data will be fetched.
+- If fetching weather fails, the error page will be shown.
+- Click "Go Back Home" on the error page to return.
+
+## Contributing
+Pull requests are welcome! Please follow standard coding conventions and create issues for bug fixes or improvements.
+
+## License
+This project is licensed under the MIT License.
+
