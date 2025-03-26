@@ -18,7 +18,7 @@ function ErrorPage() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
       <TbError404 className="text-red-500 w-32 h-32 mb-4 animate-pulse" /> {/* Enlarged & Animated */}
       
-      <h1 className="text-3xl font-bold text-red-400 shadow-md">
+      <h1 className="text-2xl sm:text-3xl font-bold text-red-400 shadow-md">
         Oops! Something went wrong.
       </h1>
       
