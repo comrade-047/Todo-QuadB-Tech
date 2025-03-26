@@ -9,9 +9,7 @@ const initialState = {
 };
 
 const sortTasks = (tasks) => {
-  return tasks.sort(
-    (a, b) => priorityRank[a.priority] - priorityRank[b.priority]
-  );
+  return tasks.sort((a, b) => priorityRank[a.priority] - priorityRank[b.priority]);
 };
 
 const taskSlice = createSlice({
@@ -31,6 +29,14 @@ const taskSlice = createSlice({
       state.tasks = sortTasks(state.tasks); // sort after deleting
       localStorage.setItem("tasks", JSON.stringify(state.tasks)); // Update localStorage
     },
+    updateTask: (state, action) => {
+      const { id, updates } = action.payload;
+      const taskIndex = state.tasks.findIndex((task) => task.id === id);
+      if (taskIndex !== -1) {
+        state.tasks[taskIndex] = { ...state.tasks[taskIndex], ...updates };
+        localStorage.setItem("tasks", JSON.stringify(state.tasks)); // Update localStorage
+      }
+    },
     setError: (state, action) => {
       state.error = action.payload;
     },
@@ -40,6 +46,5 @@ const taskSlice = createSlice({
   },
 });
 
-export const { setTasks, addTask, deleteTask, setError, setLoading } =
-  taskSlice.actions;
+export const { setTasks, addTask, deleteTask, updateTask, setError, setLoading } = taskSlice.actions;
 export default taskSlice.reducer;
