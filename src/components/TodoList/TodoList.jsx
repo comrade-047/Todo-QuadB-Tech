@@ -1,31 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
-import { deleteTask } from "../../redux/taskSlice";
 import Button from "../Button/Button";
-import { useEffect, useState } from "react";
-import { getWeather } from "../../apis/weatherApi";
 
-function TodoList() {
-  const tasks = useSelector((state) => state.tasks.tasks);
-  const dispatch = useDispatch();
-  const [weatherData, setWeatherData] = useState({});
-
-  useEffect(() => {
-    async function fetchWeather() {
-      const outdoorTasks = tasks.filter((task) => task.isOutdoor);
-      for (const task of outdoorTasks) {
-        if (task.city && !weatherData[task.id]) {
-          const weather = await getWeather(task.city);
-          if (weather) {
-            setWeatherData((prev) => ({ ...prev, [task.id]: weather }));
-          }
-        }
-      }
-    }
-    fetchWeather();
-  }, [tasks]);
-
+function TodoList({ tasks, weatherData, onDeleteTask }) {
   return (
-    <div className="w-full max-w-md mx-auto mt-6 ">
+    <div className="w-full max-w-md mx-auto mt-6">
       <ul className="space-y-3">
         {tasks.map((task) => (
           <li
@@ -56,7 +33,7 @@ function TodoList() {
             </div>
 
             <Button
-              onClick={() => dispatch(deleteTask(task.id))}
+              onClick={() => onDeleteTask(task.id)}
               className="hover:bg-red-500 hover:border-red-500 hover:text-white"
             >
               Delete

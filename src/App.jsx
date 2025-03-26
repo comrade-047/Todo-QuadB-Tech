@@ -1,9 +1,11 @@
 import { useSelector } from "react-redux";
 import "./App.css";
-import TaskInput from "./components/TaskInput/TaskInput";
 import Login from "./components/Login/Login";
-import TodoList from "./components/TodoList/TodoList";
 import backgroundImage from "./assets/react.jpg";
+import TaskInputContainer from "./components/TaskInput/TaskInputContainer";
+import TodoListContainer from "./components/TodoList/TodoListContainer";
+
+
 function App() {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
@@ -17,8 +19,8 @@ function App() {
         <Login />
         {isAuthenticated ? (
           <>
-            <TaskInput />
-            <TodoList />
+            <TaskInputContainer />
+            <TodoListContainer />
           </>
         ) : (
           <p className="mt-4 text-white text-xl ">

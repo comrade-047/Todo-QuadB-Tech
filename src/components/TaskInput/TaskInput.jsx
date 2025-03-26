@@ -1,56 +1,30 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addTask } from "../../redux/taskSlice";
-import Button from "../Button/Button"; // Import Button Component
-import InputFeild from "../InputField/InputField";
+import InputField from "../InputField/InputField";
+import Button from "../Button/Button";
 
-
-function TaskInput() {
-  const [task, setTask] = useState("");
-  const [priority, setPriority] = useState("Select");
-  const [isOutdoor,setIsOutdoor]  = useState(false);
-  const [city,setCity] = useState("");
-
-  const dispatch = useDispatch();
-
-  function handleAddTask() {
-    if (task.trim()) {
-      if (isOutdoor && !city.trim()) {
-        alert("Please enter a city name for outdoor tasks.");
-        return;
-      }
-
-      dispatch(
-        addTask({
-          id: Date.now(),
-          name: task,
-          priority,
-          isOutdoor,
-          city: isOutdoor ? city : "", // Only store city if it's an outdoor task
-        })
-      );
-
-      // Reset fields after adding task
-      setTask("");
-      setPriority("Medium");
-      setIsOutdoor(false);
-      setCity("");
-    }
-  }
-
+function TaskInput({
+  task,
+  setTask,
+  priority,
+  setPriority,
+  isOutdoor,
+  setIsOutdoor,
+  city,
+  setCity,
+  handleAddTask,
+}) {
   return (
-    <div className="flex flex-col gap-3 p-4 bg-white shadow-md rounded-md w-full max-w-md mx-auto bg-transparent" >
-      <InputFeild
+    <div className="flex flex-col gap-3 p-4 shadow-md rounded-md w-full max-w-md mx-auto bg-transparent">
+      <InputField
         value={task}
         onChange={(e) => setTask(e.target.value)}
         placeholder="Enter your task ..."
       />
 
-      {/**priority selection */}
+      {/* Priority Selection */}
       <select
         value={priority}
         onChange={(e) => setPriority(e.target.value)}
-        className="border border-gray-300 rounded-md px-3 py-2 text-white bg-white focus:outline-none  bg-transparent"
+        className="border border-gray-300 rounded-md px-3 py-2 text-white focus:outline-none bg-transparent"
       >
         <option value="Select" disabled>
           Select priority
@@ -75,7 +49,7 @@ function TaskInput() {
 
       {/* City Input (Only for Outdoor Tasks) */}
       {isOutdoor && (
-        <InputFeild
+        <InputField
           value={city}
           onChange={(e) => setCity(e.target.value)}
           placeholder="Enter City"
@@ -89,7 +63,6 @@ function TaskInput() {
       >
         Add Task
       </Button>
-      
     </div>
   );
 }
